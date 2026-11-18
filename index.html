@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Instalabilidad Nativa y Acceso Ético a Cámara | Juan José Díaz Barroso</title>
+  <meta name="description" content="Práctica 6.1 y 6.2: PWA instalable con acceso ético a cámara frontal y trasera.">
+
+  <!-- Instalabilidad -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- iOS / WebKit -->
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="InspecciónPWA">
+
+  <link rel="icon" type="image/png" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <img src="./icons/icon-192.png" alt="" class="logo" width="48" height="48">
+    <div>
+      <p class="tema">Tema 6.1 y 6.2 · PWA</p>
+      <h1>Instalabilidad Nativa y Acceso Ético a Cámara</h1>
+      <p class="autor">Alumno: <strong>Juan José Díaz Barroso</strong></p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Instalación (Android / Chrome) -->
+    <section class="tarjeta" id="seccion-instalar">
+      <h2>Instalar aplicación</h2>
+      <p id="estado-instalacion" class="texto-suave">Comprobando si la app se puede instalar…</p>
+      <button id="btn-instalar" class="btn btn-primario" hidden>Instalar App</button>
+
+      <!-- Instrucciones manuales para iPhone / iPad -->
+      <div id="instrucciones-ios" class="aviso-ios" hidden>
+        <p><strong>Para instalar en iPhone:</strong> pulsa el icono <strong>Compartir</strong>
+          <span class="icono-compartir" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3v12M7 8l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          y selecciona <strong>"Agregar a inicio"</strong>.</p>
+        <ol>
+          <li>Abre esta página en <strong>Safari</strong>.</li>
+          <li>Toca el botón <strong>Compartir</strong> (cuadro con flecha hacia arriba).</li>
+          <li>Desliza y elige <strong>Agregar a inicio</strong>.</li>
+          <li>Pulsa <strong>Agregar</strong> y abre la app desde el nuevo icono.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Cámara -->
+    <section class="tarjeta">
+      <h2>Vista previa de cámara</h2>
+
+      <div class="contenedor-video">
+        <video id="visor-camara" autoplay playsinline muted></video>
+        <div id="placeholder-video" class="placeholder-video">
+          <svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span>Cámara apagada</span>
+        </div>
+      </div>
+
+      <p id="mensaje-estado" class="mensaje-estado" role="status" aria-live="polite">Cámara apagada.</p>
+
+      <!-- Tarjeta de Aviso Ético (Pre-Permiso) -->
+      <div id="aviso-permiso" class="aviso-permiso" hidden>
+        <h3>Antes de continuar</h3>
+        <p>Esta aplicación requiere acceso a tu cámara únicamente para mostrar una vista previa local en pantalla. Ninguna imagen se envía a servidores externos.</p>
+        <ul>
+          <li>Se encenderá primero la cámara <strong id="aviso-camara">trasera</strong>.</li>
+          <li>El video se procesa solo en tu dispositivo.</li>
+          <li>Puedes apagarla cuando quieras con el botón <em>Apagar</em>.</li>
+        </ul>
+        <p class="texto-suave">Al pulsar el botón, tu navegador mostrará su cuadro de permiso.</p>
+        <div class="fila-botones">
+          <button id="btn-confirmar-permiso" class="btn btn-primario">Aceptar y Encender Cámara</button>
+          <button id="btn-cancelar-permiso" class="btn btn-secundario">Ahora no</button>
+        </div>
+      </div>
+
+      <div class="fila-botones">
+        <button id="btn-preparar-camara" class="btn btn-primario">Solicitar Acceso a Cámara</button>
+        <button id="btn-alternar-camara" class="btn btn-secundario" disabled>Cambiar cámara</button>
+        <button id="btn-apagar-camara" class="btn btn-peligro" disabled>Apagar</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Desarrollado por <strong>Juan José Díaz Barroso</strong> · Desarrollo de Aplicaciones Web Progresivas
+    <span id="modo-app" class="etiqueta"></span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
